@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizer</title>
+    <link rel="stylesheet" href="/assets/style_org.css">
+</head>
+<body>
+    <header>
+        <input type="checkbox" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+        <a href="#" class="logo">SBOS <span>.</span></a>
+        <nav class="navbar">
+            <a href="/org">Home</a>
+        </nav>
+        <div class="logo">
+            <a href="#" class="logo"><i class="far fa-heart"></i></a>
+            <a href="/userprofile" class="logo"><i class="fas fa-user"></i></a>
+        </div>
+    </header>
+    <div class="cale">
+        <h1 class="title">Venue Available</h1>
+        <div id="cards-container" class="cards-container"></div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        axios.get('/venues')
+            .then(response => {
+                const options = response.data;
+                const cardsContainer = document.getElementById('cards-container');
+                options.forEach(option => {
+                    // Create card element
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+
+                    // Set data attributes
+                    card.dataset.showId = option.show_id;
+                    card.dataset.venId = option.ven_id;
+                    card.dataset.showName = option.show_name;
+                    card.dataset.performerName = option.performer_name;
+                    card.dataset.eventDate = option.event_date;
+                    card.dataset.orgName = option.org_name;
+
+                    // Create image element
+                    const img = document.createElement('img');
+                    img.src = option.v_img1;
+                    img.alt = option.show_name;
+
+                    // Create content container
+                    const content = document.createElement('div');
+                    content.classList.add('content');
+
+                    // Create heading element
+                    const heading = document.createElement('h3');
+                    heading.textContent = option.show_name;
+
+                    // Create capacity element
+                    const capacity = document.createElement('div');
+                    capacity.classList.add('price');
+                    capacity.textContent = 'Capacity: ' + option.cap;
+
+                    // Create cost per day element
+                    const costPerDay = document.createElement('div');
+                    costPerDay.classList.add('price');
+                    costPerDay.textContent = 'Cost per day: ' + option.cost_per_day;
+
+                    // Create book now button
+                    const bookNowBtn = document.createElement('button');
+                    bookNowBtn.classList.add('book-btn');
+                    bookNowBtn.textContent = 'Book Now';
+
+                    // Add event listener to book now button
+                    bookNowBtn.addEventListener('click', function() {
+                        const showId = this.parentElement.dataset.showId;
+                        const venId = this.parentElement.dataset.venId;
+                        const showName = this.parentElement.dataset.showName;
+                        const performerName = this.parentElement.dataset.performerName;
+                        const eventDate = this.parentElement.dataset.eventDate;
+                        const orgName = this.parentElement.dataset.orgName;
+
+                        // Insert data into _show table
+                        axios.post('/addshow', {
+                            show_id: showId,
+                            show_name: showName,
+                            v_id: venId,
+                            performer_name: performerName,
+                            event_date: eventDate,
+                            org_name: orgName
+                        })
+                        .then(response => {
+                            console.log('Show added successfully:', response.data);
+                            alert('Show booked successfully!');
+                        })
+                        .catch(error => {
+                            console.error('Error adding show:', error);
+                            alert('Error booking show. Please try again later.');
+                        });
+                    });
+
+                    // Append elements to card
+                    content.appendChild(heading);
+                    content.appendChild(capacity);
+                    content.appendChild(costPerDay);
+                    card.appendChild(img);
+                    card.appendChild(content);
+                    card.appendChild(bookNowBtn);
+                    
+                    // Append card to cards container
+                    cardsContainer.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching venues:', error);
+                alert('Error fetching venues. Please try again later.');
+            });
+    </script>
+</body>
+</html>

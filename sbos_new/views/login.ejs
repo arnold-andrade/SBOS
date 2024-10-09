@@ -1,0 +1,184 @@
+<html>
+
+<head>
+    <title>login page</title>
+    <style>
+        .body {
+            background-image: url("/assets/ds1.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        @keyframes appear1 {
+            from {
+                transform: translateX(-500px);
+            }
+
+            to {
+                transform: translateX(-20px);
+            }
+        }
+
+        .logo {
+            animation-name: appear1;
+            animation-duration: 1s;
+            animation-timing-function: ease;
+            animation-delay: 0.5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: both;
+
+        }
+
+        @keyframes appear2 {
+            from {
+                transform: translateX(-500px);
+            }
+
+            to {
+                transform: translateX(9px);
+            }
+        }
+
+        .tag {
+            animation-name: appear2;
+            animation-duration: 1.5s;
+            animation-timing-function: ease;
+            animation-delay: 1s;
+            animation-iteration-count: 1;
+            animation-fill-mode: both;
+
+        }
+
+        #form {
+            height: 400px;
+            width: 300px;
+            position: absolute;
+            top: 25%;
+            left: 40%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.75);
+            border-radius: 20px;
+            background-color: transparent;
+            backdrop-filter: blur(20px);
+            text-align: center;
+        }
+
+        .userpass {
+            background-color: transparent;
+            border-radius: 20px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: white;
+            height: 25px;
+            transform: translateY(-6px);
+            color: azure;
+        }
+
+        .line {
+            border-style: solid;
+            border-color: whitesmoke;
+            border-right: 40px;
+            transform: translateY(-10px);
+            border-width: 1px;
+        }
+
+        .forpass {
+            font-size: 10px;
+            color: rgb(224, 17, 95);
+            display: block;
+            text-align: right;
+            transform: translateX(-30px);
+        }
+
+        .butt {
+            color: rgb(224, 17, 95);
+            background-color: black;
+            border-style: solid;
+            border-color: rgb(215, 0, 64);
+            border-radius: 6px;
+            font-weight: bold;
+            border-width: 3px;
+            height: 25px;
+            transition-property: transform;
+            transition-delay: 0;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+            cursor: pointer;
+        }
+
+        .butt:hover {
+            color: white;
+            background-color: rgb(224, 17, 95);
+            border-color: rgb(224, 17, 95);
+            transform: translateY(-2px);
+            border-color: rgb(224, 17, 95);
+            border-radius: 6px;
+        }
+
+       
+
+        #sub {
+            margin-right: 20px;
+        }
+
+        .drop {
+            width: 220px;
+            height: 25px;
+            border-radius: 20px;
+            background-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+            border-color: white;
+            transform: translateY(-6px);
+            color: rgb(18, 19, 19);
+        }
+
+        .drop::after {
+            background-color: transparent;
+        }
+
+        .drop option {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: azure;
+        }
+    </style>
+</head>
+
+<body class="body">
+    <!-- <img class="logo" src="E:\project jp\Picsart_23-06-20_11-53-36-312.png" width="225" height="37.5">
+        <br>
+        <img class="tag" src="E:\project jp\Picsart_23-06-20_11-54-40-695.png" width="200" height="17">   -->
+    <form action="/login" method="post">
+        <div id="form">
+            <h2 style="font-family: ifc hardball; color: rgb(215, 0, 64);">LOGIN</h2>
+            <div class="line"></div>
+            <img src="./assets/user.png" height="20" width="20">
+            <select class="drop" name="type" size="1">
+                <option disabled selected hidden>--Select user type--</option>
+                <option class="op" value="User">User</option>
+                <option class="op" value="ven">Venue Provider</option>
+                <option class="op" value="admin">Administrator</option>
+                <option class="op" value="theater">Theatre</option>
+            </select><br><br>
+            <img src="./assets/mail-removebg-preview.png" height="25" width="25">
+            <input class="userpass" name="mail" type="text" size="27"><br><br>
+            <img src="./assets/lock.png" height="25" width="25">
+            <input class="userpass" name="pass" type="password" size="27"><br>
+            <a href="/forgotpassword" class="forpass">Forgot Password?</a><br><br>
+            <input class="butt" id="sub" type="SUBMIT" value="SIGN IN" data-inline="true">
+            <br>
+            <br>
+
+            <a class="butt" id="sub" href="/signup" style="text-decoration: none;">Sign Up</a>
+            <!-- <input class="butt" type="submit" value="SIGN UP" data-inline="true"
+                onclick="window.location.href='/signup';"><br> -->
+            <div>
+                <p>
+                    <%=msg1 %>
+                </p>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

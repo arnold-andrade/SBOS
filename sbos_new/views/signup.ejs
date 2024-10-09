@@ -1,0 +1,306 @@
+<html>
+
+<head>
+    <title>signup page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Time Table</title>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+        integrity="sha384-tKLJeE1ALTUwtXlaGjJYM3sejfssWdAaWR2s97axw4xkiAdMzQjtOjgcyw0Y50KU" crossorigin="anonymous">
+
+    <style>
+        .body {
+             background-image: url("./assets/ds1.jpeg"); 
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        @keyframes appear1 {
+            from {
+                transform: translateX(-500px);
+            }
+
+            to {
+                transform: translateX(-20px);
+            }
+        }
+
+        .logo {
+            animation-name: appear1;
+            animation-duration: 1s;
+            animation-timing-function: ease;
+            animation-delay: 0.5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: both;
+
+        }
+        #input-field1:focus + #text-div , #input-field1:not(:placeholder-shown) + #text-div {
+        transform: translateY(-15px);
+        transition: all 0.3s ease;
+        font-size: 12px;
+        color: rgb(215, 0, 64);
+    }
+    
+    #input-field1:focus , #input-field1:not(:placeholder-shown) {
+        border-color: rgb(215, 0, 64);
+        transition: all 0.3s ease-in;
+    }
+    #input-field2:focus + #text-div , #input-field2:not(:placeholder-shown) + #text-div {
+        transform: translateY(-15px);
+        transition: all 0.3s ease;
+        font-size: 12px;
+        color: rgb(215, 0, 64);
+    }
+    
+    #input-field2:focus , #input-field2:not(:placeholder-shown) {
+        border-color: rgb(215, 0, 64);
+        transition: all 0.3s ease-in;
+    }
+    #input-field3:focus + #text-div , #input-field3:not(:placeholder-shown) + #text-div {
+        transform: translateY(-15px);
+        transition: all 0.3s ease;
+        font-size: 12px;
+        color: rgb(215, 0, 64);
+    }
+    
+    #input-field3:focus , #input-field3:not(:placeholder-shown) {
+        border-color: rgb(215, 0, 64);
+        transition: all 0.3s ease-in;
+    }
+    #input-field4:focus + #text-div , #input-field4:not(:placeholder-shown) + #text-div {
+        transform: translateY(-15px);
+        transition: all 0.3s ease;
+        font-size: 12px;
+        color: rgb(215, 0, 64);
+    }
+    
+    #input-field4:focus , #input-field4:not(:placeholder-shown) {
+        border-color: rgb(215, 0, 64);
+        transition: all 0.3s ease-in;
+    }
+    #input-field5:focus + #text-div , #input-field5:not(:placeholder-shown) + #text-div {
+        transform: translateY(-15px);
+        transition: all 0.3s ease;
+        font-size: 12px;
+        color: rgb(215, 0, 64);
+    }
+    
+    #input-field5:focus , #input-field5:not(:placeholder-shown) {
+        border-color: rgb(215, 0, 64);
+        transition: all 0.3s ease-in;
+    }
+        @keyframes appear2 {
+            from {
+                transform: translateX(-500px);
+            }
+
+            to {
+                transform: translateX(9px);
+            }
+        }
+
+        .tag {
+            animation-name: appear2;
+            animation-duration: 1.5s;
+            animation-timing-function: ease;
+            animation-delay: 1s;
+            animation-iteration-count: 1;
+            animation-fill-mode: both;
+        }
+
+        #form {
+            height: 570px;
+            width: 470px;
+            position: absolute;
+            top: 10%;
+            left: 35%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.75);
+            border-radius: 20px;
+            background-color: transparent;
+            backdrop-filter: blur(20px);
+            margin-left: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .butt {
+            color: rgb(224, 17, 95);
+            background-color: black;
+            border-style: solid;
+            border-color: rgb(215, 0, 64);
+            border-radius: 6px;
+            font-weight: bold;
+            border-width: 3px;
+            height: 25px;
+            transition-property: transform;
+            transition-delay: 0;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+            align-content: left;
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+
+        }
+
+        .butt:hover {
+            color: white;
+            background-color: rgb(224, 17, 95);
+            border-color: rgb(224, 17, 95);
+            transform: translateY(-2px);
+            border-color: rgb(224, 17, 95);
+            border-radius: 6px;
+        }
+
+        #sub {
+            margin-right: 20px;
+        }
+
+        .namebox {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            resize: vertical;
+            position: absolute;
+            border-bottom: solid;
+            border-bottom-color: #adadad;
+            border-bottom-width: 1px;
+            color: azure;
+        }
+
+        .container {
+            position: absolute;
+        }
+
+        .name {
+            color: #adadad;
+        }
+
+        #input-field:focus+#text-div,
+        #input-field:not(:placeholder-shown)+#text-div {
+            transform: translateY(-15px);
+            transition: all 0.3s ease;
+            font-size: 12px;
+            color: rgb(215, 0, 64);
+        }
+
+        #input-field:focus,
+        #input-field:not(:placeholder-shown) {
+            border-color: rgb(215, 0, 64);
+            transition: all 0.3s ease-in;
+        }
+
+        .butts {
+            position: absolute;
+        }
+
+        .line {
+            border-style: solid;
+            border-color: white;
+            border-width: 1px;
+        }
+    </style>
+</head>
+
+<body class="body">
+    <form action="/signup" method="post">
+        <div id="form">
+            <h2
+                style="font-family: ifc hardbell; color: rgb(215, 0, 64); text-align: center; -webkit-text-stroke: 0.5px; ;-webkit-text-stroke-color: #5b5858;">
+                SIGN UP</h2>
+            <div class="line"></div><br><br>
+            <div>
+                <div class="container">
+                    <input class="namebox" name="input_field1" id="input-field1" type="text" placeholder=" " size="50">
+                    <div class="name" id="text-div">NAME</div>
+                </div><br>
+            </div>
+            <br><br>
+            <div>
+                <div class="container">
+                    <input class="namebox" name="input_field2" id="input-field2" type="text" placeholder=" " size="50">
+                    <div class="name" id="text-div">ACCOUNT NUMBER</div>
+                </div><br>
+            </div>
+            <br><br>
+            <div>
+                <div class="container">
+                    <input class="namebox" name="input_field3" id="input-field3" type="text" placeholder=" " size="50">
+                    <div class="name" id="text-div">EMAIL</div>
+                </div><br>
+            </div>
+            <br><br>
+            <div>
+                <div class="container">
+                    <input class="namebox" name="input_field4" id="input-field4" type="password" placeholder=" "
+                        size="50">
+                    <div class="name" id="text-div">CREATE PASSWORD</div>
+                </div><br>
+            </div>
+            <br><br><br><br>
+            <div>
+                <div class="container">
+                    <input class="namebox" name="input_field5" id="input-field5" type="password" placeholder=" "
+                        size="50">
+                    <div class="name" id="text-div">CONFIRM PASSWORD</div>
+                </div><br>
+            </div>
+            <br><br>
+            <div id="butts">
+                <button onclick="fn1()" class="butt" id="sub">submit</button>
+            </div>
+            <div>
+                <p>
+                    <%=msg1 %>
+                </p>
+            </div>
+        </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script>
+        // function f1() {
+        //     const x1 = document.getElementById('input-field1');
+        //     const x2 = document.getElementById('input-field2');
+        //     const x3 = document.getElementById('input-field3');
+        //     const x4 = document.getElementById('input-field4');
+        //     const x5 = document.getElementById('input-field5');
+        //     tx1 = x1.text;
+        //     console.log(tx1);
+        //     tx2 = x2.text;
+        //     tx3 = x3.text;
+        //     tx4 = x4.text;
+        //     tx5 = x5.text;
+        //     axios.get('/signup', {
+        //         params: {
+        //             px1: tx1,
+        //             px2: tx2,
+        //             px3: tx3,
+        //             px4: tx4,
+        //             px5: tx5
+        //         }
+        //     })
+        //         .then(response => {
+        //         })
+        //         .catch(error => {
+        //             console.error('Error:', error);
+        //         });
+        // }
+    </script>
+</body>
+
+</html>

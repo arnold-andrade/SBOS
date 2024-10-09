@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .movie-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .movie-card {
+            width: 300px;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .theater-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .time-slot {
+            margin: 5px;
+            padding: 8px;
+            background-color: #ddd;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Movie Booking</h1>
+    </header>
+    <main>
+        <div class="movie-container">
+            <h1>
+                book <%=msg1 %> tickets
+            </h1>
+            <div class="movie-card" onclick="showTheaters('Movie 1')">
+
+                <h2>Bharat Cinemas</h2>
+                <p>Click for Show Timings</p>
+            </div>
+            <div class="movie-card" onclick="showTheaters('Movie 2')">
+                <h2>Inox</h2>
+                <p>Click for Show Timings</p>
+            </div>
+            <!-- Add more movie cards as needed -->
+        </div>
+        <div id="theater-list-container" style="display: none;">
+            <h2>Select Timings <span id="selected-movie"></span></h2>
+            <ul id="theater-list" class="theater-list">
+                <!-- Theater list will be displayed here -->
+            </ul>
+        </div>
+        <button id="bt1" onclick="fn()"></button>
+    </main>
+
+    <script>
+        function showTheaters(movieName) {
+            // Display the theater list for the selected movie
+            document.getElementById('selected-movie').innerText = movieName;
+            document.getElementById('theater-list-container').style.display = 'block';
+
+            // For demo purposes, let's assume some theaters and time slots
+            const theaters = ['2D', '3D', '4DX'];
+            const timeSlots = ['10:00 AM', '02:00 PM', '06:00 PM', '09:00 PM'];
+
+            const theaterList = document.getElementById('theater-list');
+            theaterList.innerHTML = '';
+
+            theaters.forEach(theater => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${theater}</strong>`;
+
+                timeSlots.forEach(slot => {
+                    const timeSlot = document.createElement('div');
+                    timeSlot.classList.add('time-slot');
+                    timeSlot.innerText = slot;
+                    li.appendChild(timeSlot);
+                });
+
+                theaterList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+
+</html>

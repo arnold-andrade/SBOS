@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f8f8f8;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .event-info-container {
+            flex: 1;
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            overflow-y: auto;
+            /* Add scroll for overflow */
+        }
+
+        .event-image {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .event-description {
+            flex: 1;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .booking-bar-container {
+            background-color: #3498db;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            bottom: 0;
+        }
+
+        .book-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #fff;
+            color: #3498db;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .book-button:hover {
+            background-color: #2e86de;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="event-info-container">
+        <div class="event-image">
+            <img id="img1" src="" alt="Event Image">
+        </div>
+        <div class="event-description">
+            <h1 id="header1">
+                <%=msg1 %>
+
+            </h1>
+            <h2 id="performer"></h2>
+            <h4 id="date"></h4>
+            <h4 id="venue"></h4>
+            <h4 id="place"></h4>
+            <select id="myDropdown">
+
+            </select>
+            <h4 id="com"></h4>
+        </div>
+    </div>
+
+    <div class="booking-bar-container">
+        <button class="book-button" onclick="fn1()">Book a Seat</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var h1 = document.getElementById('header1').textContent;
+        var im = document.getElementById('img1');
+        var per = document.getElementById('performer');
+        var date = document.getElementById('date');
+        var v = document.getElementById('venue');
+        var loc = document.getElementById('place');
+        var c = document.getElementById('com');
+        var dropdown = document.getElementById("myDropdown");
+
+        axios.get('/getshowinfospecific', {
+            params: {
+                shown: h1
+            }
+
+        })
+            .then(response => {
+                const options = response.data;
+                im.src = options[0].mimg;
+                per.innerHTML = '  performer name :' + options[0].performer_name;
+                date.innerHTML = 'event date :' + options[0].event_date.substring(0, 10);
+                v.innerHTML = 'venue :' + options[0].ven_name;
+                loc.innerHTML = 'location :' + options[0].location;
+                var number = parseInt(options[0].cap);
+                for (var i = 1; i <= number; i++) {
+                    var option = document.createElement("option");
+                    option.value = i;
+                    option.text = "seat " + i;
+                    dropdown.add(option);
+                }
+            })
+            .catch(error => {
+                console.error('Error: ', error);
+            });
+    </script>
+    <script>
+        var h1 = document.getElementById('header1').textContent;
+        var dropdown = document.getElementById("myDropdown");
+        function fn1() {
+            axios.get('/book', {
+                params: {
+                    sn: h1,
+                    sv1: dropdown.options[dropdown.selectedIndex].value
+                }
+            })
+                .then(response => {
+                    c.innerHTML = "booked!!"
+                })
+                .catch(error => {
+                    console.error('Error :', error);
+                });
+        }
+    </script>
+</body>
+
+</html>

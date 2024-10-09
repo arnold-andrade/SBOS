@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Booking Website</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #c0392b;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border-radius: 8px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .popup-header {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .popup button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .popup button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="user-info">
+            <p>Name: <span id="userName"></span></p>
+            <p>Email: <span id="userEmail">
+                    <%=msg1 %>
+                </span></p>
+            <p>Credits: <span id="userCredits"></span></p>
+        </div>
+        <button onclick="openPopup()">Add Credits</button>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="popup" id="popup">
+        <div class="popup-header">
+            <h2>Add Credits</h2>
+        </div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        <label for="credits">Number of Credits:</label>
+        <input type="number" id="credits" required>
+        <button onclick="submitCredits()">Submit</button>
+        <button onclick="closePopup()">Cancel</button>
+    </div>
+
+    <script>
+        var userCredits; // Initial credits for the user
+        var userpass;
+        function openPopup() {
+            var x = document.getElementById('userEmail');
+            var x1 = x.textContent;
+            console.log(x1);
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function submitCredits() {
+            // In a real-world scenario, you would perform server-side validation and handle the credit addition.
+            // For simplicity, let's assume the password is "password123".
+            var enteredPassword = document.getElementById('password').value;
+            if (enteredPassword === userpass) {
+                var numberOfCredits = parseInt(document.getElementById('credits').value);
+                userCredits += numberOfCredits;
+                document.getElementById('userCredits').innerText = userCredits;
+                axios.get('/addcreds', {
+                    params: {
+                        credits: userCredits
+                    }
+                })
+                    .then(response => {
+                        const options = response.data;
+                        un.innerHTML = options[0].name;
+                        uc.innerHTML = options[0].credits;
+                        userCredits = parseInt(options[0].credits);
+                        userpass = options[0].passwd;
+                    })
+                    .catch(error => {
+                        console.error('Error: ', error);
+                    });
+                closePopup();
+            } else {
+                alert('Incorrect password. Credits not added.');
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var un = document.getElementById('userName');
+        var uc = document.getElementById('userCredits');
+        axios.get('/getuserinfo', {
+
+        })
+            .then(response => {
+                const options = response.data;
+                un.innerHTML = options[0].name;
+                uc.innerHTML = options[0].credits;
+                userCredits = parseInt(options[0].credits);
+                userpass = options[0].passwd;
+            })
+            .catch(error => {
+                console.error('Error: ', error);
+            });
+
+    </script>
+</body>
+
+</html>

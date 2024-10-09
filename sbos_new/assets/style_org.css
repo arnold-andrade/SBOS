@@ -1,0 +1,401 @@
+*,
+*:before,
+*:after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+form > * {
+	outline: none;
+}
+
+a {
+	text-decoration: none;
+	color: #6d8ce8;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+/* ------------------ */
+body {
+	margin: 0;
+	font-family: Helvetica, Arial, sans-serif;
+	background-color: #eee;
+	background-image: url(/assets/pexels-z-ladin-üstündağ-20578401.jpg);
+}
+
+.calendar {
+	max-width: 1000px;
+	min-width: 768px;
+	margin : 135px auto;
+}
+
+.calendar .title {
+	color: #6d8ce8;
+	margin: 1rem 0 0;
+	text-align: center;
+	background-color: white;
+	padding: 1rem;
+}
+
+.event {
+	position: relative;
+	padding-bottom: 16.665%;
+	margin: 1rem 0;
+	background-color: white;
+}
+.cale{
+	padding-top: 100px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.navbar {
+    display: flex;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 1rem;
+}
+
+.cale {
+    padding: 95px;
+}
+
+.title {
+    text-align: center;
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.content {
+    padding: 20px;
+}
+
+.book-btn {
+    display: block;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.book-btn:hover {
+    background-color: #555;
+}
+.event > figure {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url(/assets/pexels-z-ladin-üstündağ-20578401.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 25%;
+	height: 100%;
+}
+
+.event > figure:hover + aside .name {
+	color: #6d8ce8;
+}
+
+.event aside {
+	position: absolute;
+	top: 0;
+	left: 25%;
+	width: 75%;
+	height: 100%;
+	font-size: 12px;
+	padding: 1rem;
+	color: #888;
+}
+
+.date {
+	text-transform: uppercase;
+	font-weight: lighter;
+	font-size: 0.9em;
+}
+
+.name {
+	cursor: pointer;
+	color: #555;
+	margin: 0.3rem 0;
+	transition: all 200ms ease-in-out;
+}
+
+.name:hover {
+	color: #6d8ce8;
+}
+
+.location {
+	color: #aaa;
+}
+
+.tags {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 1rem;
+	font-size: 0.9em;
+	border-top: 1px solid #ddd;
+	overflow: hidden;
+}
+
+.tag {
+	cursor: pointer;
+	margin: 0 0.2rem;
+	transition: all 200ms ease-in-out;
+}
+
+.tag:hover {
+	color: #6d8ce8;
+}
+
+@media screen and (max-width: 767px) {
+	.calendar {
+		max-width: 100%;
+		min-width: 320px;
+		overflow: hidden;
+	}
+	
+	.event {
+		float: left;
+		position: relative;
+		width: 46%;
+		margin: 2%;
+		padding: 0;
+	}
+	
+	
+	/* floating fix */
+	.event:nth-child(3n+1){
+    clear:both;
+	}
+	
+	.event figure {
+		position: relative;
+		width: 100%;
+		padding-bottom: 66.66%;
+	}
+	
+	.event aside {
+		position: relative;
+		width: 100%;
+		left: 0;
+	}
+	
+	.tags {
+		line-height: 1;
+		border: none;
+		position: relative;
+		height: auto;
+		padding: 0;
+		margin-top: 1em;
+	}
+	
+	.tag {
+		display: inline-block;
+		background-color: #eee;
+		padding: 0.4em;
+		border-radius: 0.4em;
+		margin: 0.2rem 0.1rem;
+	}
+}
+
+@media screen and (max-width: 414px) {
+	.event {
+		float: left;
+		position: relative;
+		width: 96%;
+		margin: 2%;
+		padding: 0;
+	}
+}
+.event {
+    display: flex;
+    flex-direction:column-reverse;
+}
+
+.book-button {
+    background-color: #6d8ce8;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.book-button:hover {
+    background-color: #555;
+    color: white;
+}
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.2s linear;
+}
+
+html{
+    font-size: 70%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    overflow-x: hidden;
+
+}
+/* Add your styles here for the cards */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.card {
+    width: 300px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card .content {
+    padding: 10px;
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.card .price {
+    font-size: 20px;
+    color: #666;
+}
+
+header{
+    position:fixed;
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 10%;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0,0.1);
+    z-index: 1000;
+
+}
+header .logo{
+    font-size: 3rem;
+    color: #333;
+    font-weight: bolder;
+}
+header .logo span{
+    color: palevioletred;
+}
+header .navbar a{
+    font-size: 2rem;
+    padding:0 1.5rem;
+    color: #666;
+    display: inline-block;
+
+}
+header .navbar a:hover{
+    color: palevioletred;
+}
+header .logo a{
+    font-size: 3rem;
+    color: #333;
+    margin-left: 2rem;
+    
+}
+header .logo a:hover{
+    color: palevioletred;
+}
+header #toggler{
+    display: none;
+}
+header .fa-bars{
+    font-size: 3rem;
+    color: #333;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    border: 0.1rem solid rgba(0, 0, 0,0.3);
+    display: none;
+}
+.h{
+    width: 100%;
+}

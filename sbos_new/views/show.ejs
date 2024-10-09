@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/3e6acf71f7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/style_home.css">
+
+    <title>SBOS</title>
+</head>
+<!-- <frameset rows="8%,32%,60%" border="0">
+    <frame src="/assets/204-2040208_padlock-free-png-image-lock-png-icon-transparent.png" scrolling="no"></frame>
+    <frame src="/assets/ds.jpeg" scrolling="no"></frame>
+    <frameset cols="80%,20%">
+        <frame src="/assets/image1.jpeg"></frame>         
+        <frame src="/assets/mail.png" scrolling="no"></frame>
+    </frameset>
+</frameset>  -->
+
+<body>
+    <header>
+
+        <input type="checkbox" id="toggler">
+        <label for="toggler" class="fas fa-bars"></label>
+        <a href="#" class="logo">SBOS <span>.</span></a>
+
+        <nav class="navbar">
+            <a href="/home2">Home</a>
+            <a href="/show">Events</a>
+            <a href="/movies">Movies</a>
+        </nav>
+
+        <div class="logo">
+            <a href="#" class="logo"><i class="far fa-heart"></i></a>
+            <a href="/userprofile" class="logo"><i class="fas fa-user"></i></a>
+
+
+        </div>
+
+    </header>
+    <section class="pos">
+
+        <div class="slideshow mid">
+            <div class="slides">
+                <input type="radio" name="r" id="r1" checked>
+                <input type="radio" name="r" id="r2">
+                <input type="radio" name="r" id="r3">
+                <input type="radio" name="r" id="r4">
+                <input type="radio" name="r" id="r5">
+                <div class="slide s1"><img src="/assets/mp.webp" alt=""></div>
+                <div class="slide"><img src="/assets//mp2.jpg" alt=""></div>
+                <div class="slide"><img src="/assets/mp3.jpg" alt=""></div>
+                <div class="slide"><img src="/assets/mp4.jpg" alt=""></div>
+                <div class="slide"><img src="/assets/mp5.jpg" alt=""></div>
+            </div>
+
+
+            <div class="nav">
+                <label for="r1" class="bar"></label>
+                <label for="r2" class="bar"></label>
+                <label for="r3" class="bar"></label>
+                <label for="r4" class="bar"></label>
+                <label for="r5" class="bar"></label>
+            </div>
+        </div>
+    </section>
+    <section class="products" id="products">
+        <h1 class="heading"> Latest <span>Releases</span></h1>
+        <div class="boxc">
+
+
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+
+            axios.get('/getshowinfo1', {
+
+            })
+                .then(response => {
+                    const options = response.data;
+                    options.forEach(option => {
+                        var newDiv = document.createElement("div");
+                        newDiv.classList.add("box");
+
+                        // Create span element with class "discount" and set its content
+                        var discountSpan = document.createElement("span");
+                        discountSpan.classList.add("discount");
+                        discountSpan.textContent = "U/A";
+
+                        // Create div with class "image" and its content
+                        var imageDiv = document.createElement("div");
+                        imageDiv.classList.add("image");
+
+                        // Create img element and set its source and alt attributes
+                        var imgElement = document.createElement("img");
+                        imgElement.src = option.mimg;
+                        imgElement.alt = "/assets/image6.jpeg";
+
+                        // Create div with class "icons" and its content
+                        var iconsDiv = document.createElement("div");
+                        iconsDiv.classList.add("icons");
+
+                        // Create a link with class "cart-btn" and set its content and href
+                        var cartBtnLink = document.createElement("a");
+                        cartBtnLink.classList.add("cart-btn");
+                        cartBtnLink.textContent = "book now";
+                        cartBtnLink.onclick = function () {
+                            form.submit(); // Trigger the form's action
+                        };
+
+                        // Create a hidden input field to store the value of the heading element
+                        var headingInput = document.createElement("input");
+                        headingInput.type = "hidden";
+                        headingInput.name = "show";
+                        headingInput.value = option.show_name;
+
+                        // Append elements to their respective parent elements
+                        iconsDiv.appendChild(cartBtnLink);
+                        imageDiv.appendChild(imgElement);
+                        imageDiv.appendChild(iconsDiv);
+
+                        // Create div with class "content" and its content
+                        var contentDiv = document.createElement("div");
+                        contentDiv.classList.add("content");
+
+                        // Create heading element and set its content
+                        var headingElement = document.createElement("h3");
+                        headingElement.textContent = option.show_name;
+                        headingElement.setAttribute("name", "show");
+
+                        // Create div with class "price" and set its content
+                        var priceDiv = document.createElement("div");
+                        priceDiv.classList.add("price");
+                        priceDiv.textContent = "low tickets remaining!";
+
+                        // Append elements to their respective parent elements
+                        contentDiv.appendChild(headingElement);
+                        contentDiv.appendChild(priceDiv);
+
+                        // Append elements to the main div
+                        newDiv.appendChild(discountSpan);
+                        newDiv.appendChild(imageDiv);
+                        newDiv.appendChild(contentDiv);
+
+                        var form = document.createElement("form");
+                        form.action = "/dshow";
+                        form.method = "post";
+
+                        // Append the hidden input to the form
+                        form.appendChild(headingInput);
+
+                        // Append the dynamic div to the form
+                        form.appendChild(newDiv);
+
+                        // Append the new div to the "product" section
+                        document.querySelector(".boxc").appendChild(form);
+
+                    });
+                })
+                .catch(error => {
+                    console.error('Error: ', error);
+                });
+
+        </script>
+
+    </section>
+
+
+</body>
+
+</html>
